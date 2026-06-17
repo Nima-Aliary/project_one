@@ -78,3 +78,26 @@ grid_2 = GridSearchCV(
     n_jobs=-1,
     verbose=1
 )
+pipe_3 = Pipeline([
+    ('scale', StandardScaler()),
+    ('model', DecisionTreeClassifier(random_state=42))
+])
+
+param_grid_3 = {
+    'model__criterion': ['gini', 'entropy'],
+    'model__max_depth': [None, 5, 10, 15, 20],
+    'model__min_samples_split': [2, 10, 20],
+    'model__min_samples_leaf': [1, 5, 10],
+    'model__max_features': [None, 'sqrt', 'log2']
+}
+
+cv_3 = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+grid_3 = GridSearchCV(
+    estimator=pipe_3,
+    param_grid= param_grid_3,
+    cv = cv_3,
+    scoring='f1_macro',
+    n_jobs=-1,
+    verbose=1
+)
