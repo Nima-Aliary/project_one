@@ -52,3 +52,29 @@ report_test = classification_report(y_true=y_test, y_pred=y_pred_test)
 
 print(f"accuracy_test_rf : {accuracy_test}")
 print(f"report_test_rf : {report_test}")
+
+pipe_2 = Pipeline([
+    ('scale', StandardScaler()),
+    ('model', RandomForestClassifier(random_state=42))
+])
+
+param_grid_2 = {
+    'model__n_estimators': [100, 200, 500],
+    'model__max_depth': [None, 10, 20, 30],
+    'model__min_samples_split': [2, 5, 10],
+    'model__min_samples_leaf': [1, 2, 4],
+    'model__max_features': ['sqrt', 'log2', None],
+    'model__bootstrap': [True, False]
+}
+
+
+cv_2 = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+grid_2 = GridSearchCV(
+    estimator=pipe_2,
+    param_grid= param_grid_2,
+    cv = cv_2,
+    scoring='f1_macro',
+    n_jobs=-1,
+    verbose=1
+)
