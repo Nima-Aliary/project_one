@@ -50,3 +50,5 @@ y_pred_test = best_model.predict(X_test)
 accuracy_test = accuracy_score(y_true=y_test, y_pred=y_pred_test)
 report_test = classification_report(y_true=y_test, y_pred=y_pred_test)
 
+print(f"accuracy_test_rf : {accuracy_test}")
+print(f"report_test_rf : {report_test}")
