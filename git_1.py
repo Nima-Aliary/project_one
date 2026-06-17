@@ -83,6 +83,10 @@ grid_2.fit(X_train, y_train)
 print(grid_2.best_params_)
 best_model_2 = grid_2.best_estimator_
 
+y_pred_test_2 = best_model_2.predict(X_test)
+accuracy_test_2 = accuracy_score(y_true=y_test, y_pred=y_pred_test_2)
+report_test_2 = classification_report(y_true=y_test, y_pred=y_pred_test_2)
+
 pipe_3 = Pipeline([
     ('scale', StandardScaler()),
     ('model', DecisionTreeClassifier(random_state=42))
@@ -110,3 +114,8 @@ grid_3 = GridSearchCV(
 grid_3.fit(X_train, y_train)
 print(grid_3.best_params_)
 best_model_3 = grid_3.best_estimator_
+
+y_pred_test_3 = best_model_3.predict(X_test)
+accuracy_test_3 = accuracy_score(y_true=y_test, y_pred=y_pred_test_3)
+report_test_3 = classification_report(y_true=y_test, y_pred=y_pred_test_3)
+
