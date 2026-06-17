@@ -78,6 +78,11 @@ grid_2 = GridSearchCV(
     n_jobs=-1,
     verbose=1
 )
+
+grid_2.fit(X_train, y_train)
+print(grid_2.best_params_)
+best_model_2 = grid_2.best_estimator_
+
 pipe_3 = Pipeline([
     ('scale', StandardScaler()),
     ('model', DecisionTreeClassifier(random_state=42))
@@ -101,3 +106,7 @@ grid_3 = GridSearchCV(
     n_jobs=-1,
     verbose=1
 )
+
+grid_3.fit(X_train, y_train)
+print(grid_3.best_params_)
+best_model_3 = grid_3.best_estimator_
