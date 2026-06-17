@@ -45,3 +45,8 @@ grid = GridSearchCV(
 grid.fit(X_train, y_train)
 print(grid.best_params_)
 best_model = grid.best_estimator_
+
+y_pred_test = best_model.predict(X_test)
+accuracy_test = accuracy_score(y_true=y_test, y_pred=y_pred_test)
+report_test = classification_report(y_true=y_test, y_pred=y_pred_test)
+
