@@ -41,3 +41,7 @@ grid = GridSearchCV(
     n_jobs=-1,
     verbose=1
 )
+
+grid.fit(X_train, y_train)
+print(grid.best_params_)
+best_model = grid.best_estimator_
