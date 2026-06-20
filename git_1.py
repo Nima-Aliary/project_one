@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score, classification_report, precision_sco
 
 bc = load_breast_cancer()
 X, y = bc.data, bc.target
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
 pipe = Pipeline([
     ('scale', StandardScaler()),
